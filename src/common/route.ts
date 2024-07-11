@@ -1,9 +1,8 @@
-export const useRouter = () => {
-    const { navigateTo, redirectTo, navigateBack, switchTab } = uni;
+import {useRoute} from 'vue-router'
+export const useRouterr = () => {
+   const router = useRoute();
     
-    const push = (option: UniApp.NavigateToOptions) => {
-        navigateTo(option);
-    };
+    const push = router.push()
     const replace = (option: UniApp.RedirectToOptions) => {
         redirectTo(option);
     };
