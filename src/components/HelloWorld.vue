@@ -6,6 +6,10 @@ const main = useMain()
 
 main.increment()
 console.log(main.counter)
+ElMessage({
+  message: 'Congrats, this is a success message.',
+  type: 'success',
+})
 // let { counter, name, doubleCount } = storeToRefs(main)
 // console.log(counter.value)
 // defineProps<{ msg: string }>()

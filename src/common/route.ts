@@ -1,9 +1,8 @@
-import { RouteParams ,RouteParamsGeneric} from "vue-router";
+import { RouteParams ,} from "vue-router";
 
-export const router = (op:RouteParamsGeneric ) => {
+export const router = ( ) => {
    const router = useRouter();
-    
-    const push = router.push(op)
+    const push =(op:RouteParams)=> router.push(op)
    
     return { push};
 };
