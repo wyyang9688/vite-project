@@ -8,6 +8,7 @@ import Components from 'unplugin-vue-components/vite';
 import { ConfigEnv, defineConfig } from "vite";
 import { getConfig } from "./config/cfg";
 
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 console.log(getConfig())
 const getViteConfig = (configEnv: ConfigEnv) => {
     const { mode } = configEnv;
@@ -17,8 +18,12 @@ const getViteConfig = (configEnv: ConfigEnv) => {
 			AutoImport({
 				imports: ['vue', 'vue-router'],
 				dts: "src/auto-import.d.ts",
+				resolvers: [ElementPlusResolver()],
+
 			}),
 			Components({
+				//element
+				resolvers: [ElementPlusResolver()],
 				// 引入组件的,包括自定义组件
 				// 存放的位置
 				dts: "src/components.d.ts",

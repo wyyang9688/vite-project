@@ -48,7 +48,7 @@ class Common {
         }
         return o[paramName] || "";
     };
-    qs = (obj: AnyObject): string => {
+    qs = (obj: any): string => {
         let str = "";
         for (let k in obj) {
             if (str) {
@@ -143,37 +143,40 @@ class Common {
             shareParams.actId = this.getQueryParam(url, "actId");
             shareParams.shareUid = this.getQueryParam(url, "shareUid");
             shareParams.ori = this.getQueryParam(url, "ori");
-            uni.setStorageSync("shareParams", shareParams);
+            localStorage.setItem("shareParams", JSON.stringify(shareParams));
         }
     };
-    checkShowByKey = (key: string, num: string | number) => {
-        num = isNaN(parseInt(num as string)) ? 0 : parseInt(num as string);
+    // checkShowByKey = (key: string, num: string | number) => {
+    //     num = isNaN(parseInt(num as string)) ? 0 : parseInt(num as string);
 
-        let data = uni.getStorageSync(key);
-        if (
-            data &&
-            data.date &&
-            data.date == this.format(new Date(), "YYYYMMDD")
-        ) {
-        } else {
-            data = {
-                date: this.format(new Date(), "YYYYMMDD"),
-                num: 0,
-                setNum: num || 0
-            };
-        }
+    //     let data = localStorage.getItem(key);
+    //     if(typeof data == 'string'&&data){
+    //         data=JSON.parse(data) 
+    //     }
+    //     if (
+    //         data  &&
+    //         data.date &&
+    //         data.date == this.format(new Date(), "YYYYMMDD")
+    //     ) {
+    //     } else {
+    //         data = {
+    //             date: this.format(new Date(), "YYYYMMDD"),
+    //             num: 0,
+    //             setNum: num || 0
+    //         };
+    //     }
 
-        let flag = false;
-        if (data.num < num || !num) {
-            flag = true;
-        } else {
-        }
-        data.num = data.num + 1;
-        data.setNum = num || 0;
-        uni.setStorageSync(key, data);
-        console.log(key, num, data.num, flag);
-        return flag;
-    };
+    //     let flag = false;
+    //     if (data.num < num || !num) {
+    //         flag = true;
+    //     } else {
+    //     }
+    //     data.num = data.num + 1;
+    //     data.setNum = num || 0;
+    //     uni.setStorageSync(key, data);
+    //     console.log(key, num, data.num, flag);
+    //     return flag;
+    // };
 }
 
 export const com = new Common();
