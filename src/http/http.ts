@@ -71,14 +71,14 @@ class Http {
             if (ops.method == "GET") {
                 ops.data = undefined;
             }
-            console.log("接口调用->", { url: ops.url, data: ops.data });
+            // console.log("接口调用->", { url: ops.url, data: ops.data });
             const res = (await this.axios(ops)) as any;
             if (this.isShowLoading) {
                 // if (this.loadUrl == ops.url) uni.hideLoading();
             }
-            console.log("接口返回->", { url: ops.url, data: res.data.data });
+            // console.log("接口返回->", { url: ops.url, data: res.data.data });
             if (op.showToast && res.data.code != 0 && res.data.msg) {
-                loading({text:'加载中...'});
+                // loading({text:'加载中...'});
                 if (res.data.code == -99) {
                     if (op.needLogin) {
                         let {push } =router()
@@ -169,7 +169,7 @@ class Http {
           }, function (error) {
             // 超出 2xx 范围的状态码都会触发该函数。
             // 对响应错误做点什么
-            console.log("接口超时处理")
+            // console.log("接口超时处理")
             console.log(error)
               if(error.config.url.indexOf("/api/v3/report/usr/spend-rpt")>=0 ){
                 console.log("用户超时")

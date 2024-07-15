@@ -1,8 +1,64 @@
 <script setup lang="ts">
 import { useMain } from '@/store/index';
+import { http } from '@/http/http'
+import { service } from '@/service/service'
 
 import { storeToRefs } from 'pinia';
 const main = useMain()
+http.post('/a/123', {
+  key: 'val'
+})
+
+const login = async () => {
+  console.log('login')
+  const res = await service.login({
+    pn: "15348401122",
+    pwd: "123456",
+    model: 8388604,
+  })
+  console.log(res)
+  console.log('sendHttp')
+  try {
+    const res = await service.getBalances({ did: '8696220592622390' })
+    console.log(res)
+  } catch (error) {
+    console.error(error)
+  }
+
+}
+
+login()
+
+
+const getAbPlugDetailList = async (type: string) => {
+
+  try {
+    const res = await service.getPlusList({
+      uid: "17dd1c9ca727cb6c",
+      eid: "172678d04880c400",
+      iDisplayStart: 0,
+      iDisplayLength: 10,
+      hasCount: true
+    });
+    if (res.data)
+      res.data = res.data.map((v: any) => {
+        let endTime =
+          +new Date(v.createTime).getTime() +
+          60 * 60 * 1000 * 24 * (v.drDays || 0);
+        let isOutOfRange = endTime - new Date().getTime() <= 0;
+        return {
+          ...v,
+          endTime,
+          isOutOfRange
+        };
+      });
+
+  } catch (error) {
+    console.log(error);
+  }
+};
+console.log('getAbPlugDetailList')
+getAbPlugDetailList("init")
 
 main.increment()
 console.log(main.counter)
@@ -19,13 +75,13 @@ const count = ref(0)
 
 <template>
   <h1>{{ '' }}</h1>
-  <el-button type="primary">按钮</el-button>
+  <!-- <el-button type="primary">按钮</el-button>
   <div>
     <el-icon>
       <CameraFilled />
     </el-icon>
-  </div>
-  <div class="card">
+  </div> -->
+  <!-- <div class="card">
     <button type="button" @click="count++">count is {{ count }}</button>
     <p>
       Edit
@@ -43,7 +99,7 @@ const count = ref(0)
     Learn more about IDE Support for Vue in the
     <a href="https://vuejs.org/guide/scaling-up/tooling.html#ide-support" target="_blank">Vue Docs Scaling up Guide</a>.
   </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
+  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p> -->
 </template>
 
 <style scoped>
