@@ -1,5 +1,5 @@
 import { getConfig } from "../data/config";
-import { router } from "@/common/route";
+import { rt as router } from "@/common/route";
 import { com } from "@/common/com";
 import { toast,loading } from "@/common/toast";
 import axios, { Method } from 'axios'
@@ -39,6 +39,9 @@ interface RequestConfig<T = any> {
     withCredentials?: boolean;
     showToast?: boolean;
     needLogin?: boolean;
+    headers?:{
+        [key:string]:string
+    }
 }
 export interface BaseDataStruct<T> {
     code: number;

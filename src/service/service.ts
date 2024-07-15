@@ -51,7 +51,10 @@ class Service {
                 ...params
             },
             {
-                showToast: true
+                showToast: true,
+                headers:{
+                    // a:'123'
+                }
             }
         );
         return serviceData.data;
@@ -172,8 +175,12 @@ class Service {
                 ...params
             },
             {
-                showToast: true
-            }
+                showToast: true,
+                headers:{
+                     Authorization:'123'
+                }
+            },
+            
         );
         return serviceData.data;
     }

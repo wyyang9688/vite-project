@@ -2,8 +2,20 @@
 import { useMain } from '@/store/index';
 import { http } from '@/http/http'
 import { service } from '@/service/service'
-
+import { rt } from "@/common/route";
 import { storeToRefs } from 'pinia';
+
+
+// import { useRouter, useRoute } from 'vue-router'
+
+// const router = useRouter()
+// const route = useRoute()
+// router.push({
+//   name: 'home',
+//   query: {
+//     a: 123
+//   }
+// })
 const main = useMain()
 http.post('/a/123', {
   key: 'val'
@@ -17,6 +29,15 @@ const login = async () => {
     model: 8388604,
   })
   console.log(res)
+  if (res.code == 0) {
+    const { push } = rt()
+    push({
+      name: 'home',
+      query: {
+        a: 123
+      }
+    })
+  }
   console.log('sendHttp')
   try {
     const res = await service.getBalances({ did: '8696220592622390' })
@@ -62,10 +83,10 @@ getAbPlugDetailList("init")
 
 main.increment()
 console.log(main.counter)
-ElMessage({
-  message: 'Congrats, this is a success message.',
-  type: 'success',
-})
+// ElMessage({
+//   message: 'Congrats, this is a success message.',
+//   type: 'success',
+// })
 // let { counter, name, doubleCount } = storeToRefs(main)
 // console.log(counter.value)
 // defineProps<{ msg: string }>()
