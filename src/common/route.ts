@@ -1,25 +1,21 @@
+import router from "@/router/index";
 
-import router from '@/router/index'
+export {};
 
-export {}
-
-declare module 'vue-router' {
+declare module "vue-router" {
   interface RouteMeta {
-    transition?: string
-    isUnKeep?: boolean
+    transition?: string;
+    isUnKeep?: boolean;
   }
 }
 
- 
 function useRT() {
-  
- 
-  const push=(op:any)=> {
-    console.log(router)
+  const push = (op: any) => {
+    console.log(router);
     return router.push(op);
-  }
- 
+  };
+
   return { push };
 }
- 
-export const rt=useRT;
+
+export const rt = useRT;
