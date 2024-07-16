@@ -1,20 +1,25 @@
 
+import router from '@/router/index'
 
-const router = useRouter()
-const route = useRoute()
+export {}
 
-export const rt = ( ) => {
-   console.log(router )
-   router.push({
-    name: 'home',
-    query: {
-      a: 1234
-    }
-  })
-    const push =(op:any)=>{
-        console.log('push')
-        router.push(op)
-    }
-   
-    return { push};
-};
+declare module 'vue-router' {
+  interface RouteMeta {
+    transition?: string
+    isUnKeep?: boolean
+  }
+}
+
+ 
+function useRT() {
+  
+ 
+  const push=(op:any)=> {
+    console.log(router)
+    return router.push(op);
+  }
+ 
+  return { push };
+}
+ 
+export const rt=useRT;

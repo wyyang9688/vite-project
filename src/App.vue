@@ -3,7 +3,16 @@
 </script>
 
 <template>
-  <router-view></router-view>
+  <router-view v-slot="{ Component, route }">
+    <transition :name="route.meta.transition || 'fade'">
+      <keep-alive v-if="route.meta.isUnKeep">
+        <component :is="Component" />
+      </keep-alive>
+      <template v-else>
+        <component :is="Component" />
+      </template>
+    </transition>
+  </router-view>
 </template>
 
 <style scoped>

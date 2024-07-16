@@ -18,6 +18,14 @@ let routes= [
 // 路由
 const router = createRouter({
     history: createWebHistory(),
+    scrollBehavior(to, from, savedPosition) {
+        if (to.hash) {
+          return {
+            el: to.hash,
+            behavior: 'smooth',
+          }
+        }
+      },
     routes
 })
 // 导出

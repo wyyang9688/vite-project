@@ -6,16 +6,15 @@ import { rt } from "@/common/route";
 import { storeToRefs } from 'pinia';
 
 
-// import { useRouter, useRoute } from 'vue-router'
 
-// const router = useRouter()
-// const route = useRoute()
-// router.push({
-//   name: 'home',
-//   query: {
-//     a: 123
-//   }
-// })
+const router = useRouter()
+const route = useRoute()
+router.push({
+  name: 'home',
+  query: {
+    a: 123
+  }
+})
 const main = useMain()
 http.post('/a/123', {
   key: 'val'
@@ -30,13 +29,17 @@ const login = async () => {
   })
   console.log(res)
   if (res.code == 0) {
+    console.log(rt)
+    console.log(router)
+    console.log(route)
     const { push } = rt()
     push({
       name: 'home',
       query: {
-        a: 123
+        a: 1234
       }
     })
+
   }
   console.log('sendHttp')
   try {
